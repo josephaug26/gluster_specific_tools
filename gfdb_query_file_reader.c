@@ -663,7 +663,7 @@ main ( int argc, char *argv[] ) {
         }
 
         ret = asprintf(&query_file_path, "%s",argv[1]);
-        if (ret) {
+        if (ret = -1) {
                 LOG_IT (log_error,
                         "Memory allocation error for query_file_path");
                 goto out;
@@ -697,7 +697,7 @@ main ( int argc, char *argv[] ) {
                 list_for_each_entry (link_info, &query_record->link_list,
                                     list) {
                         
-                        gf_uuid_unparse (query_record->gfid, uuid_str);
+                        gf_uuid_unparse (link_info->pargfid, uuid_str);
                         printf("%sPGFID : %s, BASE_NAME: %s \n", STR_TAB,
                                 uuid_str, link_info->file_name);
                 }
