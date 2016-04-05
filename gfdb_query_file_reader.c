@@ -662,12 +662,7 @@ main ( int argc, char *argv[] ) {
                 goto out;
         }
 
-        ret = asprintf(&query_file_path, "%s",argv[1]);
-        if (ret = -1) {
-                LOG_IT (log_error,
-                        "Memory allocation error for query_file_path");
-                goto out;
-        }
+	query_file_path = argv[1];
 
         ret = stat (query_file_path, &stat_buff);
         if (ret) {
@@ -709,9 +704,6 @@ main ( int argc, char *argv[] ) {
 
         ret = 0;
 out:
-
-        if (query_file_path)
-                free (query_file_path);
 
         if (query_fd!=-1) {
                 close (query_fd);
